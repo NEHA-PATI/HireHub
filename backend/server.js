@@ -17,6 +17,8 @@ connectDB(); // ✅ Connects to MongoDB
 
 // Routes
 app.use('/api/resume', require('./routes/resumeRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
+
 
 // Server Start
 const PORT = process.env.PORT || 5000;
