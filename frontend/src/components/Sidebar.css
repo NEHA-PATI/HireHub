@@ -1,0 +1,19 @@
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  padding: 1rem;
+  background-color: #f3f3f3;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar a {
+  display: block;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+body.dark .sidebar {
+  background-color: #222;
+}
