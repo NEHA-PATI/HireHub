@@ -1,9 +1,10 @@
 .sidebar {
-  background: #f4f4f4;
+  background: #f9f9f9;
   height: calc(100vh - 60px);
   transition: width 0.3s ease;
   overflow: hidden;
   white-space: nowrap;
+  border-right: 1px solid #eee;
 }
 
 .sidebar.collapsed {
@@ -31,14 +32,21 @@
   color: inherit;
   text-decoration: none;
   transition: background 0.2s ease;
+  cursor: pointer;
 }
 
 .sidebar-link:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(66, 133, 244, 0.1);
 }
 
-.icon {
-  width: 20px;
-  height: 20px;
+.sidebar-icon {
+  width: 22px;
+  height: 22px;
+  filter: invert(36%) sepia(8%) saturate(150%) hue-rotate(169deg) brightness(90%) contrast(90%);
+  transition: filter 0.2s ease;
   margin-right: 10px;
+}
+
+.sidebar-link:hover .sidebar-icon {
+filter: invert(34%) sepia(92%) saturate(400%) hue-rotate(202deg) brightness(95%) contrast(90%);
 }

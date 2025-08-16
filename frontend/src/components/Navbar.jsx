@@ -1,47 +1,56 @@
 // src/components/Navbar.jsx
-import React, { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
-import { AuthContext } from '../context/AuthContext';
-import '../styles/Navbar.css';
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import "../styles/Navbar.css";
 
-const Navbar = ({ toggleSidebar }) => {
-  const { toggleTheme } = useContext(ThemeContext);
+// Import icons as file paths
+import menuIcon from "../assets/icons/menu.svg";
+import profileIcon from "../assets/icons/profile.svg";
+
+const Navbar = ({ toggleSidebar, openAuthModal }) => {
   const { user, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-   const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  const handleLogout = () => logout();
 
   return (
     <nav className="navbar">
-      
+      {/* Left */}
       <div className="navbar-left">
-        <button className="burger-menu" onClick={toggleSidebar}>
-          ☰
+        <button className="icon-btn" onClick={toggleSidebar}>
+          <img src={menuIcon} alt="Menu" className="nav-icon" />
         </button>
-        <div className="logo-container">
-          <img src="/logo.png" alt="HireHub Logo" className="logo-img" />
-          <span className="company-name">HireHub</span>
-        </div>
+        <span className="company-name">HireHub</span>
       </div>
 
-      {/* Right side: Theme toggle + Auth buttons */}
-      <div className="nav-right">
-        <button onClick={toggleTheme}>Toggle Theme</button>
-        {user ? (
-          <>
-            <span className="user-role">{user.role}</span>
-            <button onClick={handleLogout}>Logout</button>
-          </>
-        ) : (
-          <>
-            <button onClick={() => navigate("/login")}>Login</button>
-            <button onClick={() => navigate("/signup")}>Signup</button>
-          </>
-        )}
+      {/* Right */}
+      <div className="navbar-right">
+        <div className="profile-dropdown">
+          <button
+            className="icon-btn"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+          >
+            <img src={profileIcon} alt="Profile" className="nav-icon" />
+          </button>
+
+          {dropdownOpen && (
+            <div className="dropdown-menu">
+              {user ? (
+                <>
+                  <button onClick={() => console.log("Go to profile")}>
+                    Profile
+                  </button>
+                  <button onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={openAuthModal}>Login</button>
+                  <button onClick={openAuthModal}>Signup</button>
+                </>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

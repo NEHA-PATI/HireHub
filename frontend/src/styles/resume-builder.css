@@ -1,0 +1,220 @@
+/* ======== Page Layout ======== */
+.resume-builder-page {
+  padding: 16px;
+}
+
+.rb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.rb-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.upload-btn {
+  position: relative;
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.upload-btn input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-chip {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f2f2f2;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.rb-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 0.7fr; /* form | preview | suggestions */
+  gap: 16px;
+}
+
+/* mobile-first */
+@media (max-width: 1200px) {
+  .rb-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======== Panels ======== */
+.rb-panel {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* ======== Form ======== */
+.form-wrapper h3 {
+  margin: 18px 0 8px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 700px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.card {
+  border: 1px solid #eee;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
+
+.bullets .bullet-row {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.btn {
+  background: #1f7aec;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 6px 0 16px;
+}
+
+.link {
+  background: none;
+  border: none;
+  color: #1f7aec;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.link.danger {
+  color: #c0392b;
+}
+
+/* ======== Preview (Templates) ======== */
+.resume-preview {
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  padding: 24px;
+  min-height: 800px;
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease;
+}
+
+.resume-preview:hover {
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+.resume-preview .rp-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.resume-preview .rp-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.resume-preview section {
+  margin-top: 18px;
+}
+
+.resume-preview h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.rp-item { margin: 10px 0; }
+.rp-item-head {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.muted { color: #777; font-size: 13px; }
+
+.pill-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.pill-list li { background: #f2f5ff; padding: 6px 10px; border-radius: 999px; font-size: 12px; }
+
+/* --- Template Variants --- */
+.resume-preview.minimal h3 { border-bottom: 1px solid #eee; padding-bottom: 4px; }
+.resume-preview.modern .rp-header { border-left: 4px solid #1f7aec; padding-left: 12px; }
+.resume-preview.modern h3 { color: #1f7aec; }
+.resume-preview.corporate { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+.resume-preview.corporate h3 { color: #2c3e50; border-bottom: 2px solid #e9ecef; padding-bottom: 4px; }
+
+/* ======== Suggestions ======== */
+.suggestions h3 { margin: 0 0 8px; }
+.muted-list { padding-left: 18px; color: #666; }
+.muted-list li { margin: 4px 0; }
+
+/* ======== Template Selector ======== */
+.template-selector {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.template-pill {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.template-pill.active {
+  border-color: #1f7aec;
+  color: #1f7aec;
+}

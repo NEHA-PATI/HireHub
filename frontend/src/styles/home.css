@@ -1,0 +1,52 @@
+/* src/styles/home.css */
+.home-container {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.home-hero {
+  max-width: 900px;
+  margin: auto;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.home-btn {
+  background-color: #0073e6;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.home-btn:hover {
+  background-color: #005bb5;
+}
+
+body.dark .home-btn {
+  background-color: #1e90ff;
+}
+
+body.dark .home-btn:hover {
+  background-color: #187bcd;
+}

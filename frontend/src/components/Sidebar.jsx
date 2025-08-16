@@ -1,11 +1,30 @@
 // src/components/Sidebar.jsx
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/Sidebar.css";
 
-const Sidebar = ({ isOpen }) => {
-  const { user } = useContext(AuthContext);
+// Import icons as file paths
+import homeIcon from "../assets/icons/home.svg";
+import resumeIcon from "../assets/icons/resume.svg";
+import uploadIcon from "../assets/icons/upload.svg";
+import atsIcon from "../assets/icons/ats.svg";
+import templateIcon from "../assets/icons/template.svg";
+import searchIcon from "../assets/icons/search.svg";
+import loginIcon from "../assets/icons/login.svg";
+import logoutIcon from "../assets/icons/logout.svg";
+
+const Sidebar = ({ isOpen, openAuthModal }) => {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleProtectedClick = (path) => {
+    if (!user) {
+      openAuthModal();
+    } else {
+      navigate(path);
+    }
+  };
 
   return (
     <aside className={`sidebar ${isOpen ? "expanded" : "collapsed"}`}>
@@ -13,72 +32,60 @@ const Sidebar = ({ isOpen }) => {
         <ul>
           <li>
             <Link to="/" className="sidebar-link">
-              <img src="/src/assets/icons/home.svg" alt="Home" className="icon" />
+              <img src={homeIcon} alt="Home" className="sidebar-icon" />
               {isOpen && <span>Home</span>}
             </Link>
           </li>
 
-          {user?.role === "user" && (
-            <>
-              <li>
-                <Link to="/user/dashboard" className="sidebar-link">
-                  <img src="/src/assets/icons/dashboard.svg" alt="Dashboard" className="icon" />
-                  {isOpen && <span>User Dashboard</span>}
-                </Link>
-              </li>
-              <li>
-                <Link to="/user/profile" className="sidebar-link">
-                  <img src="/src/assets/icons/profile.svg" alt="Profile" className="icon" />
-                  {isOpen && <span>My Profile</span>}
-                </Link>
-              </li>
-              <li>
-                <Link to="/jobs" className="sidebar-link">
-                  <img src="/src/assets/icons/jobs.svg" alt="Jobs" className="icon" />
-                  {isOpen && <span>Find Jobs</span>}
-                </Link>
-              </li>
-            </>
-          )}
+          <li onClick={() => handleProtectedClick("/resume")}>
+            <div className="sidebar-link">
+              <img src={resumeIcon} alt="Build Resume" className="sidebar-icon" />
+              {isOpen && <span>Build Resume</span>}
+            </div>
+          </li>
 
-          {user?.role === "recruiter" && (
-            <>
-              <li>
-                <Link to="/recruiter/dashboard" className="sidebar-link">
-                  <img src="/src/assets/icons/dashboard.svg" alt="Dashboard" className="icon" />
-                  {isOpen && <span>Recruiter Dashboard</span>}
-                </Link>
-              </li>
-              <li>
-                <Link to="/recruiter/post-job" className="sidebar-link">
-                  <img src="/src/assets/icons/postjob.svg" alt="Post Job" className="icon" />
-                  {isOpen && <span>Post Job</span>}
-                </Link>
-              </li>
-              <li>
-                <Link to="/recruiter/applicants" className="sidebar-link">
-                  <img src="/src/assets/icons/applicants.svg" alt="Applicants" className="icon" />
-                  {isOpen && <span>View Applicants</span>}
-                </Link>
-              </li>
-            </>
-          )}
+          <li onClick={() => handleProtectedClick("/upload-resume")}>
+            <div className="sidebar-link">
+              <img src={uploadIcon} alt="Upload Resume" className="sidebar-icon" />
+              {isOpen && <span>Upload Resume</span>}
+            </div>
+          </li>
 
-          {!user && (
-            <>
-              <li>
-                <Link to="/login" className="sidebar-link">
-                  <img src="/src/assets/icons/login.svg" alt="Login" className="icon" />
-                  {isOpen && <span>Login</span>}
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup" className="sidebar-link">
-                  <img src="/src/assets/icons/signup.svg" alt="Signup" className="icon" />
-                  {isOpen && <span>Signup</span>}
-                </Link>
-              </li>
-            </>
+          <li onClick={() => handleProtectedClick("/ats-score")}>
+            <div className="sidebar-link">
+              <img src={atsIcon} alt="Check ATS Score" className="sidebar-icon" />
+              {isOpen && <span>Check ATS Score</span>}
+            </div>
+          </li>
+
+          <li onClick={() => handleProtectedClick("/templates")}>
+            <div className="sidebar-link">
+              <img src={templateIcon} alt="Templates" className="sidebar-icon" />
+              {isOpen && <span>Templates</span>}
+            </div>
+          </li>
+
+          <li onClick={() => handleProtectedClick("/search")}>
+            <div className="sidebar-link">
+              <img src={searchIcon} alt="Search" className="sidebar-icon" />
+              {isOpen && <span>Search</span>}
+            </div>
+          </li>
+
+          {!user ? (
+            <li onClick={openAuthModal}>
+              <div className="sidebar-link">
+                <img src={loginIcon} alt="Login" className="sidebar-icon" />
+                {isOpen && <span>Login</span>}
+              </div>
+            </li>
+          ) : (
+            <li onClick={logout}>
+              <div className="sidebar-link">
+                <img src={logoutIcon} alt="Logout" className="sidebar-icon" />
+                {isOpen && <span>Logout</span>}
+              </div>
+            </li>
           )}
         </ul>
       </nav>
